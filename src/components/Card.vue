@@ -5,19 +5,81 @@
         <img :src="product.image" alt="" />
       </div>
       <div class="desc-product">
-        <h4>{{ product.title }}</h4>
+        <h4
+          :class="[
+            product.category == `men's clothing` ? 'men-color' : 'women-color',
+          ]"
+        >
+          {{ product.title }}
+        </h4>
         <div class="rat-product">
           <p class="cat-product">{{ product.category }}</p>
-          <p class="rating"></p>
+          <div
+            :class="[
+              product.category == `men's clothing`
+                ? 'rating-container-men'
+                : 'rating-container-women',
+            ]"
+          >
+            <p class="rating">{{ product.rating.rate }}</p>
+            <div
+              :class="[
+                Math.round(product.rating.rate) > 0 ? 'circle fill' : 'circle',
+              ]"
+            ></div>
+            <div
+              :class="[
+                Math.round(product.rating.rate) > 1 ? 'circle fill' : 'circle',
+              ]"
+            ></div>
+            <div
+              :class="[
+                Math.round(product.rating.rate) > 2 ? 'circle fill' : 'circle',
+              ]"
+            ></div>
+            <div
+              :class="[
+                Math.round(product.rating.rate) > 3 ? 'circle fill' : 'circle',
+              ]"
+            ></div>
+            <div
+              :class="[
+                Math.round(product.rating.rate) > 4 ? 'circle fill' : 'circle',
+              ]"
+            ></div>
+          </div>
         </div>
 
         <hr />
         <p class="deskripsi">{{ product.description }}</p>
         <hr />
-        <h4>{{ product.price }}</h4>
+        <h4
+          :class="[
+            product.category == `men's clothing` ? 'men-color' : 'women-color',
+          ]"
+        >
+          ${{ product.price }}
+        </h4>
         <div class="button-wrap">
-          <button class="btn-buy">Buy now</button>
-          <button class="btn-next" @click="increment">Next product</button>
+          <button
+            :class="[
+              product.category == `men's clothing`
+                ? 'btn-men-buy'
+                : 'btn-women-buy',
+            ]"
+          >
+            Buy now
+          </button>
+          <button
+            :class="[
+              product.category == `men's clothing`
+                ? 'btn-men-next'
+                : 'btn-women-next',
+            ]"
+            @click="increment"
+          >
+            Next product
+          </button>
         </div>
       </div>
     </div>
@@ -40,38 +102,42 @@ hr {
   justify-content: space-between;
 }
 .btn-buy {
-  box-sizing: border-box;
-  width: 239px;
-  height: 32px;
-  color: white;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  background: #002772;
-  border-radius: 4px;
-  border: none;
 }
 .btn-next {
-  box-sizing: border-box;
-  width: 239px;
-  height: 32px;
-  color: #002772;
-  background: transparent;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  border-radius: 4px;
-  border: 1px solid #002772;
 }
 img {
   /* border: 1px solid black; */
   max-height: 500px;
   max-width: 480px;
   margin-left: 30px;
+}
+.rating-container-men {
+  display: flex;
+  justify-content: space-between;
+  width: 160px;
+}
+.rating-container-women {
+  display: flex;
+  justify-content: space-between;
+  width: 160px;
+}
+.rating-container-men .circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  border: 1px solid #002772;
+}
+.rating-container-women .circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  border: 1px solid #720060;
+}
+.rating-container-men .fill {
+  background-color: #002772;
+}
+.rating-container-women .fill {
+  background-color: #720060;
 }
 h4 {
   font-family: "Inter", sans-serif;
@@ -80,7 +146,7 @@ h4 {
   font-weight: 600;
   font-size: 28px;
   line-height: 34px;
-  color: #002772;
+  /* color: #002772; */
 }
 .deskripsi {
   font-family: "Inter", sans-serif;
@@ -115,8 +181,7 @@ h4 {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 300px;
-  margin-top: 20px;
+  /* height: 300px; */
 }
 .main-container {
   display: flex;
@@ -130,5 +195,67 @@ h4 {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   z-index: 10;
+}
+.men-color {
+  color: #002772;
+}
+.women-color {
+  color: #720060;
+}
+.btn-men-buy {
+  box-sizing: border-box;
+  width: 239px;
+  height: 32px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  background: #002772;
+  border-radius: 4px;
+  border: none;
+}
+.btn-women-buy {
+  box-sizing: border-box;
+  width: 239px;
+  height: 32px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  background: #720060;
+  border-radius: 4px;
+  border: none;
+}
+.btn-men-next {
+  box-sizing: border-box;
+  width: 239px;
+  height: 32px;
+  color: #002772;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  border-radius: 4px;
+  border: 1px solid #002772;
+}
+.btn-women-next {
+  box-sizing: border-box;
+  width: 239px;
+  height: 32px;
+  color: #720060;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  border-radius: 4px;
+  border: 1px solid #720060;
 }
 </style>

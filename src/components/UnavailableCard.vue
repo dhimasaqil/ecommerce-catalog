@@ -1,55 +1,25 @@
 <template>
-  <div>
-    <div class="container-content-unavailable">
-      <NavbarView />
-      <div class="container-card">
-        <div class="main-container-unavailable">
-          <p class="text-unavailable">This product is unavailable to show</p>
-          <button class="btn-unavailable" @click="increment">
-            Next product
-          </button>
-          <div class="bg-img">
-            <img class="img-sad" src="../assets/sad-face.svg" alt="" />
-          </div>
-        </div>
+  <div class="container-card">
+    <div class="main-container-unavailable">
+      <p class="text-unavailable">This product is unavailable to show</p>
+      <button class="btn-unavailable" @click="increment">Next product</button>
+      <div class="bg-img">
+        <img class="img-sad" src="../assets/sad-face.svg" alt="" />
       </div>
     </div>
-    <!-- cobaaa -->
-
-    <div class="bg"></div>
   </div>
 </template>
 
 <script>
-import NavbarView from "@/components/navbar.vue";
 export default {
-  name: "UnavailableView",
-  components: {
-    NavbarView,
-  },
+  name: "UnavailableCard",
   props: ["product", "increment"],
 };
 </script>
 
 <style>
-.container-content-unavailable {
-  background-color: #d8d7d7;
-  width: 100%;
-  height: 600px;
-  margin: 0;
-  padding-top: 30px;
-  position: absolute;
-}
-.bg {
-  position: absolute;
-  bottom: 0;
-  background-color: #fff;
-  width: 100%;
-  height: 300px;
-  z-index: 0;
-}
 .text-unavailable {
-  font-family: "Inter";
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
